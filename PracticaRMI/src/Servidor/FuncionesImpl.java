@@ -23,11 +23,15 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		this.regUsers = new HashMap<String, UserImpl>();
 		this.connected = new ArrayList<String>();
 	}
+	
+	public boolean searchUser(String user) throws RemoteException{
+		return regUsers.containsKey(user);
+	}
 
 	@Override
 	public boolean register(String userName, String password, String password2)
 			throws RemoteException {
-		if (regUsers.containsKey(userName)) {
+		if (searchUser(userName)) {
 			System.out.println("Nombre de usuario ya en uso.");
 			return false;
 		} else {
@@ -36,7 +40,8 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 						.println("Las contraseñas introducidas no coinciden.");
 				return false;
 			} else {
-				regUsers.put(userName, new UserImpl(userName, password));
+				UserImpl usuario = new UserImpl(userName, password);
+				regUsers.put(usuario.getUserName(),usuario);
 				return true;
 			}
 		}
@@ -56,6 +61,15 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 	@Override
 	public void disconnect(String userName) throws RemoteException {
 		connected.remove(userName);
+	}
+	
+	public void deleteUser(String userName){
+		UserImpl aux = regUsers.get(userName);
+		regUsers.remove(userName);
+	}
+	
+	public FuncionesImpl thisOb(){
+		return this;
 	}
 
 }

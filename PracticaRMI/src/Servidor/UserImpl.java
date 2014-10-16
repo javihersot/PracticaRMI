@@ -2,18 +2,41 @@ package Servidor;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UserImpl implements User{
+	
+	private String password;
+	private String userName;
+	private ArrayList<String> followers;
+	private ArrayList<String> following;
+	private Map<String, String> timeLine;
+
 
 	public UserImpl(String userName, String password) {
-		// TODO Auto-generated constructor stub
+		this.password = password;
+		this.userName = userName;
+		followers = new ArrayList<String>();
+		following = new ArrayList<String>();
+		timeLine = new HashMap<String, String>();
+	}
+	
+	public String getUserName(){
+		return userName;
 	}
 
 	@Override
 	public boolean setUser(String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		if (!Servidor.misFuncionesImpl.searchUser(name)){
+			Servidor.misFuncionesImpl.deleteUser(userName);
+			this.userName = name;
+			Servidor.misFuncionesImpl.regUsers.put(this.userName,this);
+			return true;
+		}else{
+			System.out.println("Nombre de usuario actualmente en uso.");
+			return false;
+		}
 	}
 
 	@Override
@@ -36,11 +59,7 @@ public class UserImpl implements User{
 		return false;
 	}
 
-	@Override
-	public boolean searchUser(String user) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public ArrayList<String> following() throws RemoteException {
@@ -67,7 +86,7 @@ public class UserImpl implements User{
 	}
 	
 	public String getPassword(){
-		return "";
+		return this.password;
 	}
 
 }

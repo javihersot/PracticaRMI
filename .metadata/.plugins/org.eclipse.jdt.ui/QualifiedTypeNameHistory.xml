@@ -2,9 +2,10 @@
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="Servidor.FuncionesImpl"/>
+<fullyQualifiedTypeName name="Servidor.FailLoggingException"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.rmi.RemoteException"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="Servidor.FailLoggingException"/>
+<fullyQualifiedTypeName name="Servidor.FuncionesImpl"/>
+<fullyQualifiedTypeName name="Servidor.UserImpl"/>
 </qualifiedTypeNameHistroy>
