@@ -1,0 +1,8 @@
+
+public class ExcepcionFailLogging extends Exception {
+
+    
+    public ExcepcionFailLogging(String str) {
+        super("Usuario o contraseña incorrectos.");
+    }
+}

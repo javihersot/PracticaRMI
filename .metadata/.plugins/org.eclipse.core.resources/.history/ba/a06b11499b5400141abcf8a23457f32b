@@ -1,0 +1,13 @@
+package Servidor;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import ExcepcionFailLogging;
+
+public interface Funciones extends Remote{
+	
+	public boolean register(String userName, String password, String password2) throws RemoteException;
+	public UserImpl connect(String userName, String password)throws RemoteException, ExcepcionFailLogging;
+	public void disconnect(String userName)throws RemoteException;
+
+}
