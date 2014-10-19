@@ -1,0 +1,33 @@
+package Servidor;
+
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class ProfileImpl extends UnicastRemoteObject implements Profile, Serializable {
+
+	@Override
+	public void setName(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean setPhoto(String photo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setWeb(String web) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setInfo(String info) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

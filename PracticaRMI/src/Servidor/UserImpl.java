@@ -1,39 +1,42 @@
 package Servidor;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserImpl implements User{
-	
+public class UserImpl extends UnicastRemoteObject implements User, Serializable {
+
 	private String password;
 	private String userName;
+	private ProfileImpl profile;
 	private ArrayList<String> followers;
 	private ArrayList<String> following;
 	private Map<String, String> timeLine;
 
-
-	public UserImpl(String userName, String password) {
+	public UserImpl(String userName, String password)throws RemoteException {
 		this.password = password;
 		this.userName = userName;
 		followers = new ArrayList<String>();
 		following = new ArrayList<String>();
 		timeLine = new HashMap<String, String>();
+		profile = new ProfileImpl();
 	}
-	
-	public String getUserName(){
+
+	public String getUserName() {
 		return userName;
 	}
 
 	@Override
 	public boolean setUser(String name) throws RemoteException {
-		if (!Servidor.misFuncionesImpl.searchUser(name)){
+		if (!Servidor.misFuncionesImpl.searchUser(name)) {
 			Servidor.misFuncionesImpl.deleteUser(userName);
 			this.userName = name;
-			Servidor.misFuncionesImpl.regUsers.put(this.userName,this);
+			Servidor.misFuncionesImpl.addUser(this.userName, this);
 			return true;
-		}else{
+		} else {
 			System.out.println("Nombre de usuario actualmente en uso.");
 			return false;
 		}
@@ -42,14 +45,20 @@ public class UserImpl implements User{
 	@Override
 	public boolean setPassword(String oldPassword, String newPassword1,
 			String newPassword2) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		if (!newPassword1.equals(newPassword2)) {
+			System.out.println("Las contraseñas no coinciden.");
+			return false;
+		} else {
+			this.password = newPassword1;
+			return true;
+		}
+
 	}
 
 	@Override
 	public void tweet(String tweet) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -59,18 +68,14 @@ public class UserImpl implements User{
 		return false;
 	}
 
-	
-
 	@Override
 	public ArrayList<String> following() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.following;
 	}
 
 	@Override
 	public ArrayList<String> followers() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return followers;
 	}
 
 	@Override
@@ -81,11 +86,10 @@ public class UserImpl implements User{
 
 	@Override
 	public Map<String, String> getTimeLine() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.timeLine;
 	}
-	
-	public String getPassword(){
+
+	public String getPassword() {
 		return this.password;
 	}
 

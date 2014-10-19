@@ -19,7 +19,7 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 	private Map<String, UserImpl> regUsers;
 	private ArrayList<String> connected;
 
-	public FuncionesImpl() throws RemoteException {
+	public FuncionesImpl() throws RemoteException{
 		this.regUsers = new HashMap<String, UserImpl>();
 		this.connected = new ArrayList<String>();
 	}
@@ -70,6 +70,11 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 	
 	public FuncionesImpl thisOb(){
 		return this;
+	}
+	
+	// Metodo para añadir un usuario, previa comprobación de que se puede
+	public void addUser(String userName,UserImpl user){
+		regUsers.put(userName, user);
 	}
 
 }
