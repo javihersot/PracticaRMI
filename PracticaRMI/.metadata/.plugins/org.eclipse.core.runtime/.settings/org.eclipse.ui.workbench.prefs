@@ -1,0 +1,5 @@
+ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.jdt.ui.presentation\tTorg.eclipse.compare.contentmergeviewer.TextMergeViewer\tTorg.eclipse.ui.presentation.default
+ColorsAndFontsPreferencePage.selectedElement=Corg.eclipse.ui.workbench.ACTIVE_TAB_TEXT_COLOR
+eclipse.preferences.version=1
+org.eclipse.jdt.ui.DeclarationView.backgroundColor=230,230,250
+org.eclipse.jdt.ui.JavadocView.backgroundColor=255,255,255
