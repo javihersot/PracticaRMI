@@ -1,0 +1,48 @@
+package Servidor;
+
+import java.awt.Image;
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+import javax.swing.ImageIcon;
+
+public class ProfileImpl extends UnicastRemoteObject implements Profile, Serializable {
+	
+	private String name;
+	private String web;
+	private String info;
+
+	protected ProfileImpl() throws RemoteException {
+		this.name = "";
+		this.info = "";
+		this.web = "";
+	}
+
+	@Override
+	public void setName(String name) throws RemoteException {
+		this.name = name;
+	}
+
+	// XXX FALTA
+	@Override
+	public boolean setPhoto(String photo) throws RemoteException {
+		//TODO
+		return false;
+	}
+
+	@Override
+	public void setWeb(String web) throws RemoteException {
+		this.web = web;
+	}
+
+	@Override
+	public void setInfo(String info) throws RemoteException {
+		this.info = info;
+	}
+	
+	public void getName(){
+		return this.name;
+	}
+
+}

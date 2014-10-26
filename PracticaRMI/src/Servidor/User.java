@@ -15,5 +15,5 @@ public interface User extends Remote{
 	public ArrayList<String> followers() throws RemoteException;
 	public boolean follow(String user) throws RemoteException;
 	public Map<String,String> getTimeLine() throws RemoteException;
-
+	public String getUserName() throws RemoteException;
 }

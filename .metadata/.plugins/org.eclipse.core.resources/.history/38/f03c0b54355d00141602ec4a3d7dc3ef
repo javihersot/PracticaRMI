@@ -1,0 +1,18 @@
+package Servidor;
+
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class Servidor {
+	
+	static FuncionesImpl misFuncionesImpl ;
+	
+	public static void main(String[] args){
+	
+	static FuncionesImpl misFuncionesImpl ;
+	
+	Registry registro;
+	}
+
+}

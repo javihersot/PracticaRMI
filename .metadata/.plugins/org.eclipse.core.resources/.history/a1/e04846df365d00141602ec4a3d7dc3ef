@@ -1,0 +1,26 @@
+package Servidor;
+
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+public class Servidor {
+
+	static FuncionesImpl misFuncionesImpl;
+
+	public static void main(String[] args) {
+		
+		Registry registro;
+		
+		try {
+			Funciones fun;
+			registro = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+			registro.rebind("Funciones", fun = new FuncionesImpl());
+			System.out.println(fun.searchUser("ramvito"));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

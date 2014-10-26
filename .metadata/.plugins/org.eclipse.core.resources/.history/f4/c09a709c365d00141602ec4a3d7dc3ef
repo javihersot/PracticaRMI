@@ -1,0 +1,26 @@
+package Cliente;
+
+import java.rmi.*;
+import java.rmi.registry.*;
+
+import Servidor.Funciones;
+
+public class Cliente {
+	
+	public static void main(String [] args){
+		
+		Registry registroServ;
+		Registry registroCliente;
+		
+		try {
+			registroServ = LocateRegistry.getRegistry();
+			Funciones funciones = (Funciones) registroServ.lookup("Funciones");
+			System.out.println("OK");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

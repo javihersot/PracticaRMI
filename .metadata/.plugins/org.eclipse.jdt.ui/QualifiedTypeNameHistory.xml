@@ -4,11 +4,17 @@
 <fullyQualifiedTypeName name="Servidor.FailLoggingException"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
-<fullyQualifiedTypeName name="Servidor.FuncionesImpl"/>
-<fullyQualifiedTypeName name="Servidor.UserImpl"/>
 <fullyQualifiedTypeName name="java.rmi.server.UnicastRemoteObject"/>
-<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.awt.Image"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="Servidor.FuncionesImpl"/>
+<fullyQualifiedTypeName name="java.rmi.registry.Registry"/>
+<fullyQualifiedTypeName name="Servidor.Funciones"/>
+<fullyQualifiedTypeName name="Servidor.User"/>
+<fullyQualifiedTypeName name="Servidor.UserImpl"/>
+<fullyQualifiedTypeName name="java.rmi.registry.LocateRegistry"/>
+<fullyQualifiedTypeName name="Servidor.Profile"/>
+<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
+<fullyQualifiedTypeName name="Servidor.ProfileImpl"/>
 </qualifiedTypeNameHistroy>

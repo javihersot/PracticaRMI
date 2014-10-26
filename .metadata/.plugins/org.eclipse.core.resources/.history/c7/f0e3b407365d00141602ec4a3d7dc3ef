@@ -1,0 +1,12 @@
+package Cliente;
+
+import java.rmi.*;
+import java.rmi.registry.*;
+
+public class Cliente {
+	
+	public static void main(String [] args){
+		
+	}
+
+}

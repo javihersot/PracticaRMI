@@ -13,7 +13,7 @@ public class ProfileImpl extends UnicastRemoteObject implements Profile, Seriali
 	private String web;
 	private String info;
 
-	protected ProfileImpl() throws RemoteException {
+	public ProfileImpl() throws RemoteException {
 		this.name = "";
 		this.info = "";
 		this.web = "";
@@ -39,6 +39,10 @@ public class ProfileImpl extends UnicastRemoteObject implements Profile, Seriali
 	@Override
 	public void setInfo(String info) throws RemoteException {
 		this.info = info;
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 
 }

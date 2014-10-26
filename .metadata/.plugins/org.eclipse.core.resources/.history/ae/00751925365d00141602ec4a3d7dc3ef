@@ -1,0 +1,20 @@
+package Cliente;
+
+import java.rmi.*;
+import java.rmi.registry.*;
+
+public class Cliente {
+	
+	public static void main(String [] args){
+		
+		Registry registroServ;
+		
+		try {
+			registroServ = LocateRegistry.getRegistry();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
