@@ -1,6 +1,8 @@
 package Servidor;
 
-public class DirectMessage {
+import java.rmi.server.RemoteObject;
+
+public class DirectMessage extends RemoteObject{
 	
 	private String remitente;
 	private String destinatario;

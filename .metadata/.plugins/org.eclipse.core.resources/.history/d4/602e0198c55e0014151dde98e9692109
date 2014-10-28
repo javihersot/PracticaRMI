@@ -1,0 +1,27 @@
+package Cliente;
+
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+public class Callback extends UnicastRemoteObject implements Serializable, CallbackInterface{
+
+	private static final long serialVersionUID = 134195810117452489L;
+	
+	protected Callback() throws RemoteException {
+		super();
+	}
+
+	public void notifyMessage(){
+		System.out.println("Tienes un nuevo mensaje.");
+	}
+	
+	public void notifyTweet(){
+		System.out.println("Una persona a la que sigues a tweeteado.");
+	}
+	
+	public void notifyFollower(){
+		System.out.println("Tienes un nuevo seguidor.");
+	}
+
+}

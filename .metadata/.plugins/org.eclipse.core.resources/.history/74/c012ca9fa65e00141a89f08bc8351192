@@ -1,0 +1,7 @@
+package Servidor;
+
+import java.rmi.server.UnicastRemoteObject;
+
+public class Callback extends UnicastRemoteObject{
+
+}

@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="Servidor.FailLoggingException"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.rmi.server.UnicastRemoteObject"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.awt.Image"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="Servidor.FuncionesImpl"/>
-<fullyQualifiedTypeName name="java.rmi.registry.Registry"/>
 <fullyQualifiedTypeName name="Servidor.Funciones"/>
 <fullyQualifiedTypeName name="Servidor.User"/>
 <fullyQualifiedTypeName name="Servidor.UserImpl"/>
 <fullyQualifiedTypeName name="java.rmi.registry.LocateRegistry"/>
 <fullyQualifiedTypeName name="Servidor.Profile"/>
-<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
 <fullyQualifiedTypeName name="Servidor.ProfileImpl"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.rmi.server.RemoteObject"/>
+<fullyQualifiedTypeName name="Cliente.Cliente"/>
+<fullyQualifiedTypeName name="java.rmi.registry.Registry"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="Servidor.DirectMessage"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.util.concurrent.Callable"/>
+<fullyQualifiedTypeName name="Servidor.Callback"/>
+<fullyQualifiedTypeName name="Servidor.InexistentUserException"/>
+<fullyQualifiedTypeName name="Cliente.Callback"/>
+<fullyQualifiedTypeName name="java.rmi.Remote"/>
+<fullyQualifiedTypeName name="Cliente.CallbackInterface"/>
+<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
 </qualifiedTypeNameHistroy>

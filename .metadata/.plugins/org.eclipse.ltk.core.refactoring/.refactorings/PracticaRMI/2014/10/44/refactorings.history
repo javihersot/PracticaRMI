@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;Callback.java&apos; to &apos;PracticaRMI/src/Cliente&apos;&#x0A;- Original project: &apos;PracticaRMI&apos;&#x0A;- Destination element: &apos;PracticaRMI/src/Cliente&apos;&#x0A;- Original element: &apos;Servidor.Callback.java&apos;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;Cliente" element1="/src&lt;Servidor{Callback.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1414505278336" units="1" version="1.0"/>
+</session>
