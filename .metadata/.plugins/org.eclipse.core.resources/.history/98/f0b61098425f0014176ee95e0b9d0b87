@@ -24,10 +24,10 @@ public class DirectMessage extends RemoteObject{
 
 	public String getMessage() {
 		if(message.length() >= 140){
-			message = message.substring(0, 137);
+			message.substring(0, 137);
 			message = message + "...";
-			System.out.println(message.length());
 		}
+			
 		return message;
 	}
 

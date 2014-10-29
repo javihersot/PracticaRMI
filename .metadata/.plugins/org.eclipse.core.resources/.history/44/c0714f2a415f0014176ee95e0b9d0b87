@@ -15,5 +15,5 @@ public interface User extends Remote{
 	public ArrayList<String> followers() throws RemoteException;
 	public void follow(String user) throws RemoteException, InexistentUserException;
 	public Map<String,String> getTimeLine() throws RemoteException;
-	public Map<String,String> getMessages () throws RemoteException;
+	public ArrayList<DirectMessage> getMessages () throws RemoteException;
 }

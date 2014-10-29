@@ -16,7 +16,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	private ArrayList<String> followers;
 	private ArrayList<String> following;
 	private Map<String, String> timeLine;
-	private Map<String,String> mailbox; //Debe ser un map usuario--> mensaje
+	private ArrayList<DirectMessage> mailbox;
 
 	public UserImpl(String userName, String password) throws RemoteException {
 		this.password = password;
@@ -24,7 +24,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 		followers = new ArrayList<String>();
 		following = new ArrayList<String>();
 		timeLine = new HashMap<String, String>();
-		mailbox = new HashMap<String, String>();
+		mailbox = new ArrayList<DirectMessage>();
 	}
 
 	public String getUserName() throws RemoteException {
@@ -104,17 +104,12 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 	
 	public void putMessage(DirectMessage message){
-		this.mailbox.put(message.getRemitente(), message.getMessage());
+		this.mailbox.add(message);
 	}
 	
 	public void putFollower(String user){
 		this.followers.add(user);
 		System.out.println("Followers de " + this.userName +": " + followers.toString());
-	}
-
-	@Override
-	public Map<String,String> getMessages() throws RemoteException {
-		return this.mailbox;
 	}
 
 }

@@ -28,17 +28,21 @@ public class Cliente {
 			User usuarioIsidoro = null;
 			if (funciones.connect("ramvito", "123456789")) {
 				usuarioRamvito = (User) registroServ.lookup("ramvito");
+				System.out.println(usuarioRamvito.getUserName());
 			}
 			if (funciones.connect("isidoro", "123456789")) {
 				usuarioIsidoro = (User) registroServ.lookup("isidoro");
+				System.out.println(usuarioIsidoro.getUserName());
 			}
 			usuarioRamvito.follow("isidoro");
 			//usuarioIsidoro.follow("ramvito");
 			System.out.println(usuarioIsidoro.followers().toString());
+			System.out.println(usuarioRamvito.followers().toString());
 			System.out.println(usuarioRamvito.following().toString());
-			usuarioIsidoro.directMessage("ramvito", "unodostrescuatrdhfhfghahsdhALHSBFlakjbkajebkeburheRUHkñljbvkjekuhrkjbrusefobugwekgbflkdjbgñkjrdhñksurhnvnhgbfhdhshnehehedccnfnfhfjgjgjgotorrtthh");
-			System.out.println(usuarioRamvito.getMessages().get("isidoro").length());
-			System.out.println(usuarioRamvito.getMessages().toString());
+			System.out.println(usuarioIsidoro.following().toString());
+			User usuarioNuevo = (User)registroServ.lookup("isidoro");
+			System.out.println(usuarioNuevo.followers().toString());
+			// usuarioIsidoro.directMessage("ramvito", "Hola");
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {

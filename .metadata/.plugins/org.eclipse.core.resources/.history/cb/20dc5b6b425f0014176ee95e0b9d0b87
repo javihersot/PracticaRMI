@@ -36,8 +36,7 @@ public class Cliente {
 			//usuarioIsidoro.follow("ramvito");
 			System.out.println(usuarioIsidoro.followers().toString());
 			System.out.println(usuarioRamvito.following().toString());
-			usuarioIsidoro.directMessage("ramvito", "unodostrescuatrdhfhfghahsdhALHSBFlakjbkajebkeburheRUHkñljbvkjekuhrkjbrusefobugwekgbflkdjbgñkjrdhñksurhnvnhgbfhdhshnehehedccnfnfhfjgjgjgotorrtthh");
-			System.out.println(usuarioRamvito.getMessages().get("isidoro").length());
+			usuarioIsidoro.directMessage("ramvito", "Hola");
 			System.out.println(usuarioRamvito.getMessages().toString());
 		} catch (RemoteException e) {
 			e.printStackTrace();

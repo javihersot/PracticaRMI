@@ -70,7 +70,7 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		} catch (NotBoundException e) {
 			e.printStackTrace();
 		}
-		Servidor.registro.rebind(userName, regUsers.get(userName));
+		Servidor.registro.rebind(userName, new UserImpl(userName,password));
 		return true;
 	}
 

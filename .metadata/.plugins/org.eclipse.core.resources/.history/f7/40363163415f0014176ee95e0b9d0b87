@@ -104,7 +104,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 	
 	public void putMessage(DirectMessage message){
-		this.mailbox.put(message.getRemitente(), message.getMessage());
+		this.mailbox.add(message);
 	}
 	
 	public void putFollower(String user){
