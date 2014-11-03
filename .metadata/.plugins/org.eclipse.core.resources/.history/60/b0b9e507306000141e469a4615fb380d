@@ -1,0 +1,9 @@
+package Servidor;
+
+import java.rmi.server.RemoteObject;
+
+public class Tweet extends RemoteObject{
+	
+	private String twee;
+
+}

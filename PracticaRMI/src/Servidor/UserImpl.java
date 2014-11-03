@@ -6,7 +6,9 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class UserImpl extends UnicastRemoteObject implements User, Serializable {
@@ -15,16 +17,16 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	private String userName;
 	private ArrayList<String> followers;
 	private ArrayList<String> following;
-	private Map<String, String> timeLine;
-	private Map<String,String> mailbox; //Debe ser un map usuario--> mensaje
+	private ArrayList<Tweet> timeLine;
+	private Map<String, DirectMessage> mailbox;
 
 	public UserImpl(String userName, String password) throws RemoteException {
 		this.password = password;
 		this.userName = userName;
 		followers = new ArrayList<String>();
 		following = new ArrayList<String>();
-		timeLine = new HashMap<String, String>();
-		mailbox = new HashMap<String, String>();
+		timeLine = new ArrayList<Tweet>();
+		mailbox = new HashMap<String, DirectMessage>();
 	}
 
 	public String getUserName() throws RemoteException {
@@ -59,8 +61,8 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 
 	@Override
 	public void tweet(String tweet) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		Tweet tweetReal = new Tweet(this.userName, tweet);
+		Servidor.misFuncionesImpl.twittear(tweetReal,this.followers);
 	}
 
 	@Override
@@ -70,9 +72,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 			throw new InexistentUserException();
 		}
 		DirectMessage message = new DirectMessage(this.userName, user, msg);
-		if (Servidor.misFuncionesImpl.isConnected(user)){
-			Servidor.misFuncionesImpl.recieveMessage(message);
-		}
+		Servidor.misFuncionesImpl.recieveMessage(message);
 	}
 
 	@Override
@@ -90,13 +90,23 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 		if(!Servidor.misFuncionesImpl.searchUser(user)){
 			throw new InexistentUserException();
 		}
+		if(following.contains(user)){
+			return;
+		}
 		this.following.add(user);
 		Servidor.misFuncionesImpl.recieveFollower(user, this.userName);
 	}
 
 	@Override
-	public Map<String, String> getTimeLine() throws RemoteException {
-		return this.timeLine;
+	public String getTimeLine() throws RemoteException {
+		String res = "";
+		Iterator<Tweet> it = timeLine.iterator();
+		int cont = 0;
+		while(it.hasNext()){
+			Tweet tweet = it.next();
+		   res += "[" + ++cont + "]" + tweet.getUser() + " twitteo: " + tweet.getTweet() +  "[Retweets: " + tweet.getRetweets() + " ] [Favs: " + tweet.getFavs() + " ]" + "\n";
+		}
+		return res;
 	}
 
 	public String getPassword() {
@@ -104,7 +114,11 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 	
 	public void putMessage(DirectMessage message){
-		this.mailbox.put(message.getRemitente(), message.getMessage());
+		try {
+			this.mailbox.put(message.getRemitente(), message);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void putFollower(String user){
@@ -113,8 +127,61 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 
 	@Override
-	public Map<String,String> getMessages() throws RemoteException {
+	public String getMessages() throws RemoteException {
+		String res = "Tus mensajes directos: " + "\n";
+		for (String key : mailbox.keySet()) {
+		    res += key +"\n";
+		}
+		return res;
+	}
+	
+	public String message(String user)throws RemoteException{
+		String res = "";
+		try {
+			return mailbox.get(user).getMessage();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public void unfollow(String user) throws RemoteException,
+			InexistentUserException {
+		if(!this.following.contains(user)){
+			return;
+		}
+		this.following.remove(user);
+		Servidor.misFuncionesImpl.removeFollower(user,this.userName);
+	}
+	
+	public Map<String, DirectMessage> getDirectMessages (){
 		return this.mailbox;
+	}
+	
+	public void putTweet(Tweet tweet){
+		this.timeLine.add(tweet);
+	}
+	
+	public void putUnfollow(String user){
+		this.followers.remove(user);
+	}
+
+	@Override
+	public void retwittear(int index) throws RemoteException {
+		Tweet tweet = timeLine.get(index);
+		tweet.setRetweets();
+		this.tweet(tweet.getTweet());
+	}
+
+	@Override
+	public void fav(int index) throws RemoteException {
+		Tweet tweet = timeLine.get(index);
+		tweet.setFavs();
+	}
+	
+	public ArrayList<Tweet> getTweets() throws RemoteException{
+		return this.timeLine;
 	}
 
 }

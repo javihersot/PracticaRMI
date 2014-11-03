@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import Cliente.Callback;
 import Cliente.CallbackInterface;
 
-
 public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		Serializable {
 
@@ -24,15 +23,14 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 	private static final long serialVersionUID = -8779351076503953090L;
 
 	private Map<String, UserImpl> regUsers;
-	private Map<String,CallbackInterface> connected;
+	private Map<String, CallbackInterface> connected;
 
-
-	public FuncionesImpl() throws RemoteException{
+	public FuncionesImpl() throws RemoteException {
 		this.regUsers = new HashMap<String, UserImpl>();
-		this.connected = new HashMap<String,CallbackInterface>();
+		this.connected = new HashMap<String, CallbackInterface>();
 	}
-	
-	public boolean searchUser(String user) throws RemoteException{
+
+	public boolean searchUser(String user) throws RemoteException {
 		return regUsers.containsKey(user);
 	}
 
@@ -49,63 +47,74 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 				return false;
 			} else {
 				UserImpl usuario = new UserImpl(userName, password);
-				regUsers.put(usuario.getUserName(),usuario);
+				regUsers.put(usuario.getUserName(), usuario);
 				return true;
 			}
 		}
 	}
 
 	@Override
-	public boolean connect(String userName, String password)
-			throws RemoteException, FailLoggingException {
-		CallbackInterface callback;
-		String nombreCallback = userName +"Callback";
+	public boolean connect(String userName, String password,
+			CallbackInterface callbackUsuario) throws RemoteException,
+			FailLoggingException {
+		String nombreCallback = userName + "Callback";
 		if (!regUsers.containsKey(userName)
 				|| !regUsers.get(userName).getPassword().equals(password)) {
 			throw new FailLoggingException();
 		}
-		try {
-			callback = (Cliente.CallbackInterface) Servidor.registro.lookup(nombreCallback);
-			connected.put(userName,callback);
-		} catch (NotBoundException e) {
-			e.printStackTrace();
-		}
+		Servidor.registro.rebind(nombreCallback, callbackUsuario);
+		connected.put(userName, callbackUsuario);
 		Servidor.registro.rebind(userName, regUsers.get(userName));
+		for (DirectMessage mensaje : regUsers.get(userName).getDirectMessages()
+				.values()) {
+			if (!mensaje.leido()) {
+				callbackUsuario.notifyMessage();
+				break;
+			}
+		}
 		return true;
 	}
 
 	@Override
 	public void disconnect(String userName) throws RemoteException {
+		String callback = userName + "Callback";
+		try {
+			Servidor.registro.unbind(callback);
+		} catch (NotBoundException e) {
+			e.printStackTrace();
+		}
 		connected.remove(userName);
 	}
-	
-	public void deleteUser(String userName){
+
+	public void deleteUser(String userName) {
 		UserImpl aux = regUsers.get(userName);
 		regUsers.remove(userName);
 	}
-	
 
-	
 	// Metodo para añadir un usuario, previa comprobación de que se puede
-	public void addUser(String userName,UserImpl user){
+	public void addUser(String userName, UserImpl user) {
 		regUsers.put(userName, user);
 	}
-	
-	public boolean isConnected(String user){
+
+	public boolean isConnected(String user) {
 		return connected.containsKey(user);
 	}
-	
-	public void recieveMessage(DirectMessage message){
-		this.regUsers.get(message.getDestinatario()).putMessage(message);
+
+	public void recieveMessage(DirectMessage message) {
 		try {
-			this.connected.get(message.getDestinatario()).notifyMessage();
+			this.regUsers.get(message.getDestinatario()).putMessage(message);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			if (this.connected.containsKey(message.getDestinatario()))
+				this.connected.get(message.getDestinatario()).notifyMessage();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public void recieveFollower(String userFollowed, String userFollowing){
+
+	public void recieveFollower(String userFollowed, String userFollowing) {
 		this.regUsers.get(userFollowed).putFollower(userFollowing);
 		try {
 			this.connected.get(userFollowed).notifyFollower(userFollowing);
@@ -114,8 +123,8 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 			e.printStackTrace();
 		}
 	}
-	
-	public boolean following(String user1, String user2){
+
+	public boolean following(String user1, String user2) {
 		boolean res = false;
 		try {
 			res = regUsers.get(user1).following().contains(user2);
@@ -125,6 +134,26 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		}
 		System.out.println(res);
 		return res;
+	}
+	
+	public void twittear(Tweet tweet,ArrayList<String> followers){
+		Iterator<String > it = followers.iterator();
+		while(it.hasNext()){
+			String user = it.next();
+			regUsers.get(user).putTweet(tweet);
+			if(this.connected.containsKey(tweet.getUser())){
+				try {
+					this.connected.get(tweet.getUser()).notifyTweet();
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public void removeFollower(String user,String user2){
+		regUsers.get(user).putUnfollow(user2);
 	}
 
 }

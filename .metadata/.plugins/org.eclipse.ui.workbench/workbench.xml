@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="19" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
 <window height="744" maximized="true" width="1024" x="65" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -45,13 +45,14 @@
 <part id="8"/>
 <part id="9"/>
 <part id="10"/>
+<part id="12"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Funciones.java" partName="Funciones.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/Funciones.java" title="Funciones.java" tooltip="PracticaRMI/src/Servidor/Funciones.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Funciones.java" partName="Funciones.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/Funciones.java" title="Funciones.java" tooltip="PracticaRMI/src/Servidor/Funciones.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/Funciones.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="239" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="359" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Profile.java" partName="Profile.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/Profile.java" title="Profile.java" tooltip="PracticaRMI/src/Servidor/Profile.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/Profile.java"/>
@@ -59,15 +60,15 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="User.java" partName="User.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/User.java" title="User.java" tooltip="PracticaRMI/src/Servidor/User.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/User.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="795" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="989" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FuncionesImpl.java" partName="FuncionesImpl.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/FuncionesImpl.java" title="FuncionesImpl.java" tooltip="PracticaRMI/src/Servidor/FuncionesImpl.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/FuncionesImpl.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2035" selectionTopPixel="1225"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4243" selectionTopPixel="1929"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Servidor.java" partName="Servidor.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/Servidor.java" title="Servidor.java" tooltip="PracticaRMI/src/Servidor/Servidor.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/Servidor.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="281" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="480" selectionTopPixel="76"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ProfileImpl.java" partName="ProfileImpl.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/ProfileImpl.java" title="ProfileImpl.java" tooltip="PracticaRMI/src/Servidor/ProfileImpl.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/ProfileImpl.java"/>
@@ -75,7 +76,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Cliente.java" partName="Cliente.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Cliente/Cliente.java" title="Cliente.java" tooltip="PracticaRMI/src/Cliente/Cliente.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Cliente/Cliente.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1067" selectionTopPixel="88"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1546" selectionTopPixel="280"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="InexistentUserException.java" partName="InexistentUserException.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/InexistentUserException.java" title="InexistentUserException.java" tooltip="PracticaRMI/src/Servidor/InexistentUserException.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/InexistentUserException.java"/>
@@ -83,11 +84,11 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DirectMessage.java" partName="DirectMessage.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/DirectMessage.java" title="DirectMessage.java" tooltip="PracticaRMI/src/Servidor/DirectMessage.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/DirectMessage.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="553" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="13" selectionOffset="211" selectionTopPixel="76"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Callback.java" partName="Callback.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Cliente/Callback.java" title="Callback.java" tooltip="PracticaRMI/src/Cliente/Callback.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Cliente/Callback.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="708" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="70" selectionOffset="147" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="CallbackInterface.java" partName="CallbackInterface.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Cliente/CallbackInterface.java" title="CallbackInterface.java" tooltip="PracticaRMI/src/Cliente/CallbackInterface.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Cliente/CallbackInterface.java"/>
@@ -95,7 +96,11 @@
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserImpl.java" partName="UserImpl.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/UserImpl.java" title="UserImpl.java" tooltip="PracticaRMI/src/Servidor/UserImpl.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/UserImpl.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3013" selectionTopPixel="1351"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4754" selectionTopPixel="2422"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tweet.java" partName="Tweet.java" path="/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Servidor/Tweet.java" title="Tweet.java" tooltip="PracticaRMI/src/Servidor/Tweet.java" workbook="org.eclipse.ui.internal.EditorStack@ab02ae">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PracticaRMI/src/Servidor/Tweet.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="519" selectionTopPixel="178"/>
 </editor>
 </editors>
 <views>
@@ -105,11 +110,11 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (23 items)"/>
+<category IMemento.internal.id="Warnings (28 items)"/>
 <category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="362" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
+<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="587" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -233,7 +238,7 @@
 </mainWindow>
 </layout>
 </perspective>
-<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<perspective editorAreaTrimState="1" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
@@ -294,31 +299,33 @@
 <perspective_action id="com.android.ide.eclipse.hierarchyviewer.TreeViewPerspective"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.eclipse.jdt.ui.PackageExplorer"/>
 <fastViewBars>
 <fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
 <fastViews>
-<view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
+<view id="org.eclipse.ui.views.ProblemView" ratio="0.29953197"/>
 <view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
 <view id="org.eclipse.ui.console.ConsoleView" ratio="0.3775351"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="16384" id="left" orientation="512" selectedTabId="org.eclipse.jdt.ui.PackageExplorer" style="1">
+<fastViews>
+<view id="org.eclipse.jdt.ui.PackageExplorer" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="left">
-<folder activePageID="org.eclipse.jdt.ui.PackageExplorer" appearance="2" expanded="2">
-<page content="org.eclipse.jdt.ui.PackageExplorer" label="Package Explorer"/>
+<folder appearance="2" expanded="0">
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.ui.navigator.ProjectExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.junit.ResultView" label="LabelNotFound"/>
 <page content="org.eclipse.wb.core.StructureView" label="LabelNotFound"/>
 <page content="org.eclipse.wb.core.PaletteView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info folder="true" part="stickyFolderRight" ratio="0.7494199" ratioLeft="969" ratioRight="324" relationship="2" relative="left">
@@ -361,157 +368,157 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/PracticaRMI/src/Cliente/Cliente.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/PracticaRMI/src/Servidor/FuncionesImpl.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/PracticaRMI/src/Servidor/User.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/PracticaRMI/src/Servidor/DirectMessage.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/PracticaRMI/src/Servidor/Tweet.java"/>
 </editors>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1230" y="0"/>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4615" y="0"/>
 </item>
-<item historyLabel="FuncionesImpl.java" index="3">
-<position info="not_deleted" x="2035" y="0"/>
-</item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1234" y="0"/>
-</item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1234" y="0"/>
+<item historyLabel="Tweet.java" index="5">
+<position info="not_deleted" x="173" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="893" y="0"/>
+<position info="not_deleted" x="4615" y="0"/>
 </item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1025" y="0"/>
+<item historyLabel="Tweet.java" index="5">
+<position info="not_deleted" x="519" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="893" y="0"/>
+<position info="not_deleted" x="4615" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4647" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4625" y="5"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4647" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4773" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1559" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4773" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4866" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4803" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1544" y="0"/>
 </item>
 <item historyLabel="User.java" index="4">
-<position info="not_deleted" x="835" y="0"/>
+<position info="not_deleted" x="1041" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="893" y="0"/>
-</item>
-<item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3275" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1563" y="0"/>
-</item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="835" y="0"/>
-</item>
-<item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="595" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1619" y="0"/>
-</item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
-</item>
-<item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3212" y="0"/>
+<position info="not_deleted" x="4780" y="58"/>
 </item>
 <item historyLabel="User.java" index="4">
-<position info="not_deleted" x="795" y="0"/>
+<position info="not_deleted" x="1127" y="0"/>
 </item>
-<item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3014" y="0"/>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1544" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1625" y="0"/>
+</item>
+<item historyLabel="Servidor.java" index="1">
+<position info="not_deleted" x="480" y="0"/>
 </item>
 <item historyLabel="FuncionesImpl.java" index="3">
-<position info="not_deleted" x="2035" y="0"/>
+<position info="not_deleted" x="4243" y="0"/>
+</item>
+<item historyLabel="Servidor.java" index="1">
+<position info="not_deleted" x="480" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1625" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3014" y="0"/>
+<position info="not_deleted" x="4780" y="58"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1625" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4780" y="58"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4802" y="0"/>
+</item>
+<item historyLabel="User.java" index="4">
+<position info="not_deleted" x="1085" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4400" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1625" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1546" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1532" y="10"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1544" y="0"/>
+</item>
+<item historyLabel="Servidor.java" index="1">
+<position info="not_deleted" x="480" y="0"/>
+</item>
+<item historyLabel="UserImpl.java" index="0">
+<position info="not_deleted" x="4400" y="0"/>
 </item>
 <item historyLabel="FuncionesImpl.java" index="3">
-<position info="not_deleted" x="2035" y="0"/>
+<position info="not_deleted" x="4243" y="0"/>
+</item>
+<item historyLabel="Servidor.java" index="1">
+<position info="not_deleted" x="480" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1625" y="0"/>
+</item>
+<item historyLabel="Servidor.java" index="1">
+<position info="not_deleted" x="480" y="0"/>
+</item>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1517" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3014" y="0"/>
+<position info="not_deleted" x="4531" y="0"/>
+</item>
+<item historyLabel="User.java" index="4">
+<position info="not_deleted" x="989" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3013" y="0"/>
+<position info="not_deleted" x="4647" y="0"/>
 </item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="675" y="0"/>
+<item historyLabel="Cliente.java" index="2">
+<position info="not_deleted" x="1517" y="0"/>
 </item>
 <item historyLabel="UserImpl.java" index="0">
-<position info="not_deleted" x="3013" y="0"/>
+<position info="not_deleted" x="4754" y="0"/>
 </item>
 <item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
+<position info="not_deleted" x="1570" y="0"/>
 </item>
 <item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
+<position info="not_deleted" x="480" y="0"/>
 </item>
 <item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1067" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="675" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="650" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="650" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1419" y="0"/>
+<position info="not_deleted" x="1570" y="0"/>
 </item>
 <item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1067" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="654" y="0"/>
-</item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="654" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="553" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
-</item>
-<item historyLabel="Servidor.java" index="1">
-<position info="not_deleted" x="281" y="0"/>
-</item>
-<item historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
-</item>
-<item historyLabel="DirectMessage.java" index="5">
-<position info="not_deleted" x="553" y="0"/>
+<position info="not_deleted" x="480" y="0"/>
 </item>
 <item active="true" historyLabel="Cliente.java" index="2">
-<position info="not_deleted" x="1030" y="0"/>
+<position info="not_deleted" x="1570" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -519,6 +526,9 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -531,6 +541,12 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MessageInt.java" tooltip="PracticaRMI/src/Servidor/MessageInt.java">
+<persistable path="/PracticaRMI/src/Servidor/MessageInt.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tweet.java" tooltip="PracticaRMI/src/Servidor/Tweet.java">
+<persistable path="/PracticaRMI/src/Servidor/Tweet.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="UserImpl.java" tooltip="PracticaRMI/src/Servidor/UserImpl.java">
 <persistable path="/PracticaRMI/src/Servidor/UserImpl.java"/>
 </file>
@@ -569,12 +585,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FuncionesImpl.java" tooltip="PracticaRMI/src/Servidor/FuncionesImpl.java">
 <persistable path="/PracticaRMI/src/Servidor/FuncionesImpl.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="User.java" tooltip="PracticaRMI/src/User.java">
-<persistable path="/PracticaRMI/src/User.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Profile.java" tooltip="PracticaRMI/src/Profile.java">
-<persistable path="/PracticaRMI/src/Profile.java"/>
 </file>
 </mruList>
 </workbench>

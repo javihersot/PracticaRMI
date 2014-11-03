@@ -1,0 +1,44 @@
+package Servidor;
+
+import java.rmi.server.RemoteObject;
+
+public class Tweet extends RemoteObject {
+
+	private String user;
+	private String tweet;
+	private int favs, retweets; Si da tiempo
+
+	public Tweet(String user, String tweet) {
+		if (tweet.length() >= 140) {
+			tweet = tweet.substring(0, 137);
+			tweet = tweet + "...";
+		}
+		this.user = user;
+		this.tweet = tweet;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public String getTweet() {
+		return tweet;
+	}
+
+	public int getFavs() {
+		return favs;
+	}
+
+	public void setFavs(int favs) {
+		this.favs = 1 + favs;
+	}
+
+	public int getRetweets() {
+		return retweets;
+	}
+
+	public void setRetweets(int retweets) {
+		this.retweets = 1 + retweets;
+	}
+
+}

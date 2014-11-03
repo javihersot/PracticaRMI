@@ -21,24 +21,29 @@ public class Cliente {
 			registroServ = LocateRegistry.getRegistry();
 			Funciones funciones = (Funciones) registroServ.lookup("Funciones");
 			funciones.register("ramvito", "123456789", "123456789");
-			registroServ.rebind("ramvitoCallback", new Callback());
 			User usuarioRamvito = null;
 			funciones.register("isidoro", "123456789", "123456789");
-			registroServ.rebind("isidoroCallback", new Callback());
 			User usuarioIsidoro = null;
-			if (funciones.connect("ramvito", "123456789")) {
+			CallbackInterface callbackRamvito = new Callback();
+
+			if (funciones.connect("ramvito", "123456789", callbackRamvito)) {
 				usuarioRamvito = (User) registroServ.lookup("ramvito");
 			}
-			if (funciones.connect("isidoro", "123456789")) {
+
+			if (funciones.connect("isidoro", "123456789", new Callback())) {
 				usuarioIsidoro = (User) registroServ.lookup("isidoro");
 			}
 			usuarioRamvito.follow("isidoro");
-			//usuarioIsidoro.follow("ramvito");
+			funciones.disconnect("ramvito");
 			System.out.println(usuarioIsidoro.followers().toString());
-			System.out.println(usuarioRamvito.following().toString());
-			usuarioIsidoro.directMessage("ramvito", "unodostrescuatrdhfhfghahsdhALHSBFlakjbkajebkeburheRUHkñljbvkjekuhrkjbrusefobugwekgbflkdjbgñkjrdhñksurhnvnhgbfhdhshnehehedccnfnfhfjgjgjgotorrtthh");
-			System.out.println(usuarioRamvito.getMessages().get("isidoro").length());
-			System.out.println(usuarioRamvito.getMessages().toString());
+			usuarioIsidoro.tweet("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			if (funciones.connect("ramvito", "123456789", callbackRamvito)) {
+				usuarioRamvito = (User) registroServ.lookup("ramvito");
+			}
+			System.out.println(usuarioRamvito.getTimeLine());
+			usuarioRamvito.retwittear(0);
+			usuarioRamvito.fav(0);
+			System.out.println(usuarioRamvito.getTimeLine());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (NotBoundException e) {

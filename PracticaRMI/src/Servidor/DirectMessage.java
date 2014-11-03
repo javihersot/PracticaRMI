@@ -1,34 +1,44 @@
 package Servidor;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;
+import java.rmi.server.UnicastRemoteObject;
 
-public class DirectMessage extends RemoteObject{
+import Cliente.CallbackInterface;
+
+public class DirectMessage extends UnicastRemoteObject implements MessageInt, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8029403149381091397L;
 	private String remitente;
 	private String destinatario;
 	private String message;
+	private boolean leido;
 	
-	public DirectMessage(String remitente, String destinatario, String message) {
+	public DirectMessage(String remitente, String destinatario, String message) throws RemoteException{
 		this.remitente=remitente;
 		this.destinatario=destinatario;
 		this.message=message;
 	}
 
-	public String getRemitente() {
+	public String getRemitente() throws RemoteException{
 		return remitente;
 	}
 
-	public String getDestinatario() {
+	public String getDestinatario() throws RemoteException{
 		return destinatario;
 	}
 
-	public String getMessage() {
-		if(message.length() >= 140){
-			message = message.substring(0, 137);
-			message = message + "...";
-			System.out.println(message.length());
-		}
+	public String getMessage() throws RemoteException{ 
+		this.leido = true;
 		return message;
+	}
+	
+	public boolean leido()throws RemoteException{
+		return this.leido;
 	}
 
 }

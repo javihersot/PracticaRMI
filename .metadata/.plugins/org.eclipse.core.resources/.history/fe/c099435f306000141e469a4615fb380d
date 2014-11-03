@@ -1,0 +1,22 @@
+package Servidor;
+
+import java.rmi.server.RemoteObject;
+
+public class Tweet extends RemoteObject{
+	
+	private String user;
+	private String tweet;
+	private int favs, retweets;
+	
+	public Tweet(String user, String tweet){
+		if(tweet.length() >= 140){
+			tweet = tweet.substring(0, 137);
+			tweet = tweet + "...";
+		}
+		this.user = user;
+		this.tweet = tweet;
+	}
+	
+	
+
+}

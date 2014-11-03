@@ -7,11 +7,9 @@
 <fullyQualifiedTypeName name="Servidor.FuncionesImpl"/>
 <fullyQualifiedTypeName name="Servidor.Funciones"/>
 <fullyQualifiedTypeName name="Servidor.User"/>
-<fullyQualifiedTypeName name="Servidor.UserImpl"/>
 <fullyQualifiedTypeName name="java.rmi.registry.LocateRegistry"/>
 <fullyQualifiedTypeName name="Servidor.Profile"/>
 <fullyQualifiedTypeName name="Servidor.ProfileImpl"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.rmi.server.RemoteObject"/>
 <fullyQualifiedTypeName name="Cliente.Cliente"/>
 <fullyQualifiedTypeName name="java.rmi.registry.Registry"/>
@@ -20,11 +18,18 @@
 <fullyQualifiedTypeName name="java.util.concurrent.Callable"/>
 <fullyQualifiedTypeName name="Servidor.Callback"/>
 <fullyQualifiedTypeName name="Servidor.InexistentUserException"/>
-<fullyQualifiedTypeName name="Cliente.Callback"/>
-<fullyQualifiedTypeName name="java.rmi.Remote"/>
-<fullyQualifiedTypeName name="Cliente.CallbackInterface"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="Servidor.DirectMessage"/>
-<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="Cliente.Callback"/>
+<fullyQualifiedTypeName name="Cliente.CallbackInterface"/>
+<fullyQualifiedTypeName name="java.rmi.Remote"/>
+<fullyQualifiedTypeName name="Servidor.MessageInt"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="Servidor.DirectMessage"/>
+<fullyQualifiedTypeName name="Servidor.Tweet"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Servidor.UserImpl"/>
+<fullyQualifiedTypeName name="java.lang.Iterable"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.rmi.RemoteException"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
 </qualifiedTypeNameHistroy>
