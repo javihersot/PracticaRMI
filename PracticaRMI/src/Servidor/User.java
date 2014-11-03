@@ -17,8 +17,10 @@ public interface User extends Remote{
 	public void unfollow(String user) throws RemoteException, InexistentUserException;
 	public String getTimeLine() throws RemoteException;
 	public String getMessages () throws RemoteException;
-	public String message(String user)throws RemoteException;
+	public String message(int index)throws RemoteException;
 	public void retwittear (int index) throws RemoteException;
 	public void fav(int index) throws RemoteException;
 	public ArrayList<Tweet> getTweets() throws RemoteException;
+	public String getMisTweets() throws RemoteException;
+	public Profile getProfile() throws RemoteException;
 }

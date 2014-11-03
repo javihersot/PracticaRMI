@@ -1,6 +1,5 @@
 package Servidor;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -9,14 +8,20 @@ import javax.swing.ImageIcon;
 
 public class ProfileImpl extends UnicastRemoteObject implements Profile, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2388367593206940990L;
 	private String name;
 	private String web;
 	private String info;
+	private String photo;
 
 	public ProfileImpl() throws RemoteException {
 		this.name = "";
 		this.info = "";
 		this.web = "";
+		this.photo = "";
 	}
 
 	@Override
@@ -41,7 +46,7 @@ public class ProfileImpl extends UnicastRemoteObject implements Profile, Seriali
 		this.info = info;
 	}
 	
-	public String getName(){
+	public String getName() throws RemoteException{
 		return this.name;
 	}
 

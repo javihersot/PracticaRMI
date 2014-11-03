@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class Callback extends UnicastRemoteObject implements CallbackInterface, Serializable{
 
-	protected Callback() throws RemoteException {
+	public Callback() throws RemoteException {
 		super();
 	}
 

@@ -10,5 +10,5 @@ public interface Profile extends Remote{
 	public boolean setPhoto(String photo) throws RemoteException;
 	public void setWeb(String web) throws RemoteException;
 	public void setInfo(String info) throws RemoteException;
-	public String getName();
+	public String getName() throws RemoteException;
 }

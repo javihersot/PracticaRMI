@@ -35,38 +35,33 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 	}
 
 	@Override
-	public boolean register(String userName, String password, String password2)
+	public int register(String userName, String password, String password2)
 			throws RemoteException {
 		if (searchUser(userName)) {
-			System.out.println("Nombre de usuario ya en uso.");
-			return false;
+			return 1;
 		} else {
 			if (!password.equals(password2)) {
-				System.out
-						.println("Las contraseñas introducidas no coinciden.");
-				return false;
+				return 2;
 			} else {
 				UserImpl usuario = new UserImpl(userName, password);
 				regUsers.put(usuario.getUserName(), usuario);
-				return true;
+				return 0;
 			}
 		}
 	}
 
 	@Override
 	public boolean connect(String userName, String password,
-			CallbackInterface callbackUsuario) throws RemoteException,
-			FailLoggingException {
+			CallbackInterface callbackUsuario) throws RemoteException {
 		String nombreCallback = userName + "Callback";
 		if (!regUsers.containsKey(userName)
 				|| !regUsers.get(userName).getPassword().equals(password)) {
-			throw new FailLoggingException();
+			return false;
 		}
 		Servidor.registro.rebind(nombreCallback, callbackUsuario);
 		connected.put(userName, callbackUsuario);
 		Servidor.registro.rebind(userName, regUsers.get(userName));
-		for (DirectMessage mensaje : regUsers.get(userName).getDirectMessages()
-				.values()) {
+		for (DirectMessage mensaje : regUsers.get(userName).getDirectMessages()) {
 			if (!mensaje.leido()) {
 				callbackUsuario.notifyMessage();
 				break;
@@ -119,7 +114,6 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		try {
 			this.connected.get(userFollowed).notifyFollower(userFollowing);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -129,7 +123,6 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		try {
 			res = regUsers.get(user1).following().contains(user2);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(res);
@@ -144,8 +137,7 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 			if(this.connected.containsKey(tweet.getUser())){
 				try {
 					this.connected.get(tweet.getUser()).notifyTweet();
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
+				} catch (RemoteException e) { 
 					e.printStackTrace();
 				}
 			}
