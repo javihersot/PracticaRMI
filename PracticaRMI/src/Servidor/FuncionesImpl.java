@@ -30,14 +30,17 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		this.connected = new HashMap<String, CallbackInterface>();
 	}
 
-	public boolean searchUser(String user) throws RemoteException {
-		return regUsers.containsKey(user);
+	public UserImpl searchUser(String user) throws RemoteException {
+		if (regUsers.containsKey(user))
+			return regUsers.get(user);
+		else
+			return null;
 	}
 
 	@Override
 	public int register(String userName, String password, String password2)
 			throws RemoteException {
-		if (searchUser(userName)) {
+		if (searchUser(userName) != null) {
 			return 1;
 		} else {
 			if (!password.equals(password2)) {
@@ -112,7 +115,8 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 	public void recieveFollower(String userFollowed, String userFollowing) {
 		this.regUsers.get(userFollowed).putFollower(userFollowing);
 		try {
-			this.connected.get(userFollowed).notifyFollower(userFollowing);
+			if (isConnected(userFollowed))
+				this.connected.get(userFollowed).notifyFollower(userFollowing);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -128,24 +132,43 @@ public class FuncionesImpl extends UnicastRemoteObject implements Funciones,
 		System.out.println(res);
 		return res;
 	}
-	
-	public void twittear(Tweet tweet,ArrayList<String> followers){
-		Iterator<String > it = followers.iterator();
-		while(it.hasNext()){
+
+	public void twittear(Tweet tweet, ArrayList<String> followers) {
+		try {
+			this.connected.get(tweet.getAutor()).notifyTweet();
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Iterator<String> it = followers.iterator();
+		while (it.hasNext()) {
 			String user = it.next();
 			regUsers.get(user).putTweet(tweet);
-			if(this.connected.containsKey(tweet.getUser())){
+			if (this.connected.containsKey(user)) {
 				try {
-					this.connected.get(tweet.getUser()).notifyTweet();
-				} catch (RemoteException e) { 
+					this.connected.get(user).notifyTweet();
+				} catch (RemoteException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
-	
-	public void removeFollower(String user,String user2){
+
+	public void removeFollower(String user, String user2) {
 		regUsers.get(user).putUnfollow(user2);
+	}
+
+	@Override
+	public void verUser(String userName) throws RemoteException {
+		try {
+			Servidor.registro.rebind(userName, regUsers.get(userName));
+		} catch (AccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

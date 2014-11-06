@@ -1,39 +1,46 @@
 package Cliente;
 
 import gráfico.Logging;
+import gráfico.Principal;
 
 import java.rmi.*;
 import java.rmi.registry.*;
+import java.util.ArrayList;
 
 import Servidor.DirectMessage;
 import Servidor.FailLoggingException;
 import Servidor.Funciones;
 import Servidor.InexistentUserException;
+import Servidor.MessageInt;
 import Servidor.Profile;
+import Servidor.Tweet;
 import Servidor.User;
 import Servidor.UserImpl;
 
 public class Cliente {
 
-	private static Registry registroServ;
-	public Funciones funciones;
+	public static Registry registroServ;
+	public static Funciones funciones;
 	public User user;
 	public static Cliente cliente;
+	public User usuarioAbierto;
+	public Principal pantallaPrincipal;
+	public MessageInt tweetAbierto;
 
 	public Cliente() {
 		try {
 			registroServ = LocateRegistry.getRegistry();
 			this.funciones = (Funciones) registroServ.lookup("Funciones");
 		} catch (AccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		this.usuarioAbierto = null;
+		this.pantallaPrincipal = null;
+		this.tweetAbierto = null;
 	}
 
 	public boolean connect(String userName, String password) {
@@ -41,26 +48,35 @@ public class Cliente {
 		try {
 			res = funciones.connect(userName, password, new Callback());
 		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		if (res) {
+			try {
+				user = (User) registroServ.lookup(userName);
+			} catch (AccessException e) {
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			} catch (NotBoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return res;
+	}
+
+	public void verUser(String userName) {
+		try {
+			funciones.verUser(userName);
+		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			user = (User) registroServ.lookup(userName);
-		} catch (AccessException e) {
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			e.printStackTrace();
-		}
-		return res;
 	}
 
 	public static void main(String[] args) {
 
 		cliente = new Cliente();
 		Logging.main(args);
-
 		/*
 		 * try { registroServ = LocateRegistry.getRegistry(); funciones =
 		 * (Funciones) registroServ.lookup("Funciones");

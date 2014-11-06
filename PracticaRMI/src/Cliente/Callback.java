@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import Servidor.Tweet;
+
 public class Callback extends UnicastRemoteObject implements CallbackInterface, Serializable{
 
 	public Callback() throws RemoteException {
@@ -14,15 +16,15 @@ public class Callback extends UnicastRemoteObject implements CallbackInterface, 
 	
 
 	public void notifyMessage() throws RemoteException{
-		System.out.println("Tienes un nuevo mensaje.");
+		Cliente.cliente.pantallaPrincipal.notify("Tienes un nuevo mensaje");
 	}
 	
 	public void notifyTweet() throws RemoteException{
-		System.out.println("Una persona a la que sigues a tweeteado.");
+		Cliente.cliente.pantallaPrincipal.refresh();
 	}
 	
 	public void notifyFollower(String seguidor) throws RemoteException{
-		System.out.println(seguidor +" Ha comenzado a seguirte.");
+		Cliente.cliente.pantallaPrincipal.notify(seguidor + " a comenzado a seguirte.");
 	}
 
 }

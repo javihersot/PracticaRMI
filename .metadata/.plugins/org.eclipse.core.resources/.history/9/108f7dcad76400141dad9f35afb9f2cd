@@ -1,0 +1,129 @@
+package gráfico;
+
+import java.awt.EventQueue;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.rmi.RemoteException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+
+public class PerfilOtros {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PerfilOtros window = new PerfilOtros();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PerfilOtros() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel imagen = new JLabel();
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO
+					.read(new File (Cliente.Cliente.cliente.user.getProfile().getPhoto()));
+			imagen = new JLabel(new ImageIcon(myPicture.getScaledInstance(
+					160, 160, BufferedImage.SCALE_SMOOTH)));
+		
+		JLabel userName=null;
+		try {
+			userName = new JLabel(Cliente.Cliente.cliente.usuarioAbierto.getUserName());
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		JLabel nombre = null;
+		try {
+			nombre = new JLabel(Cliente.Cliente.cliente.usuarioAbierto.getProfile().getName());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		nombre.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		
+		JToggleButton tglbtnSeguir = new JToggleButton("Siguiendo");
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(tglbtnSeguir)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(imagen, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+								.addComponent(userName, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+							.addGap(51)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(nombre, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(41, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(292, Short.MAX_VALUE)
+					.addComponent(lblNewLabel)
+					.addGap(86))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(nombre)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(imagen, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(userName)))
+					.addGap(18)
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+					.addComponent(tglbtnSeguir)
+					.addContainerGap())
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

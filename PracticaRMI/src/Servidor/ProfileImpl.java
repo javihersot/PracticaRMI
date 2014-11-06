@@ -17,11 +17,11 @@ public class ProfileImpl extends UnicastRemoteObject implements Profile, Seriali
 	private String info;
 	private String photo;
 
-	public ProfileImpl() throws RemoteException {
-		this.name = "";
-		this.info = "";
-		this.web = "";
-		this.photo = "";
+	public ProfileImpl(String name) throws RemoteException {
+		this.name = name;
+		this.info = "Añadir información personal";
+		this.web = "http://www.nooooooooooooooo.com/";
+		this.photo = "/home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/bin/gráfico/Default.png";
 	}
 
 	@Override
@@ -31,9 +31,8 @@ public class ProfileImpl extends UnicastRemoteObject implements Profile, Seriali
 
 	// XXX FALTA
 	@Override
-	public boolean setPhoto(String photo) throws RemoteException {
-		//TODO
-		return false;
+	public void setPhoto(String photo) throws RemoteException {
+		this.photo = photo;
 	}
 
 	@Override
@@ -48,6 +47,18 @@ public class ProfileImpl extends UnicastRemoteObject implements Profile, Seriali
 	
 	public String getName() throws RemoteException{
 		return this.name;
+	}
+	
+	public String getInfo(){
+		return this.info;
+	}
+	
+	public String getWeb(){
+		return this.web;
+	}
+	
+	public String getPhoto(){
+		return this.photo;
 	}
 
 }

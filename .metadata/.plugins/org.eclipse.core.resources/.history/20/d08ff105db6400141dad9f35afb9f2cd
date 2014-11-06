@@ -1,0 +1,221 @@
+package gráfico;
+
+import java.awt.EventQueue;
+import java.awt.Image;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.rmi.RemoteException;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Principal {
+
+	private JFrame frame;
+	private JLabel Imagen;
+	private JTextField usuario;
+	private JTextField tweet;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal window = new Principal();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Principal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 750);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JButton btnDesconectar = new JButton("Desc");
+		btnDesconectar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int dialogButton = JOptionPane.YES_NO_OPTION;
+				JOptionPane.showConfirmDialog(null,
+						"¿Está seguro de que desea salir?",
+						"Desconexión", dialogButton);
+
+				if (dialogButton == JOptionPane.YES_OPTION) {
+					try {
+						Cliente.Cliente.cliente.funciones
+								.disconnect(Cliente.Cliente.cliente.user
+										.getUserName());
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					Logging.main(null);
+					frame.dispose();
+				}
+				
+			}
+		});
+
+		JButton btnPerfil = new JButton("Perfil");
+		btnPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Perfil.main(null);
+				frame.dispose();
+			}
+		});
+
+		JButton btnTweetear = new JButton("Tweetear");
+		btnTweetear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Cliente.Cliente.cliente.user.tweet(tweet.getText());
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnTweetear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+
+		JButton btnMensajes = new JButton("Mensajes");
+
+		JScrollPane timeLine = new JScrollPane();
+		
+
+		BufferedImage myPicture;
+
+		JLabel lblNewLabel = null;
+		try {
+			myPicture = ImageIO
+					.read(new File(Cliente.Cliente.cliente.user.getProfile().getPhoto()));
+			Imagen = new JLabel(new ImageIcon(myPicture.getScaledInstance(160,
+					160, BufferedImage.SCALE_SMOOTH)));
+			frame.getContentPane().add(Imagen);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JButton btnBuscarUsuario = new JButton("Buscar usuario");
+		btnBuscarUsuario.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Cliente.Cliente.cliente.usuarioAbierto = Cliente.Cliente.cliente.funciones.searchUser(usuario.getText());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if(Cliente.Cliente.cliente.usuarioAbierto == null){
+					JOptionPane.showMessageDialog(frame, "El usuario indicado no existe.");
+				}else{
+					PerfilOtros.main(null);
+				}
+				
+			}
+		});
+
+		usuario = new JTextField();
+		usuario.setColumns(10);
+		
+		tweet = new JTextField();
+		tweet.setColumns(10);
+
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(143)
+					.addComponent(usuario, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(btnBuscarUsuario)
+					.addGap(93)
+					.addComponent(btnDesconectar)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(tweet, GroupLayout.PREFERRED_SIZE, 425, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnTweetear, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(44)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnPerfil)
+										.addComponent(btnMensajes)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(28)
+									.addComponent(Imagen, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+							.addComponent(timeLine, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)))
+					.addGap(39))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnDesconectar)
+						.addComponent(btnBuscarUsuario)
+						.addComponent(usuario, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addGap(56)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(Imagen, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(btnPerfil)
+							.addGap(34)
+							.addComponent(btnMensajes)
+							.addGap(160))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(timeLine, GroupLayout.PREFERRED_SIZE, 469, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(tweet)
+						.addComponent(btnTweetear, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+					.addGap(32))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

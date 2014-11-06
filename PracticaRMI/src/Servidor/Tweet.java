@@ -1,14 +1,19 @@
 package Servidor;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;
+import java.rmi.server.UnicastRemoteObject;
 
-public class Tweet extends RemoteObject {
+import javax.xml.ws.handler.MessageContext;
+
+public class Tweet extends UnicastRemoteObject implements MessageInt, Serializable{
 
 	private String user;
 	private String tweet;
 	private int favs, retweets;
 
-	public Tweet(String user, String tweet) {
+	public Tweet(String user, String tweet) throws RemoteException{
 		if (tweet.length() >= 140) {
 			tweet = tweet.substring(0, 137);
 			tweet = tweet + "...";
@@ -17,11 +22,11 @@ public class Tweet extends RemoteObject {
 		this.tweet = tweet;
 	}
 
-	public String getUser() {
+	public String getAutor() {
 		return user;
 	}
 
-	public String getTweet() {
+	public String getContent() {
 		return tweet;
 	}
 
@@ -29,16 +34,16 @@ public class Tweet extends RemoteObject {
 		return favs;
 	}
 
-	public void setFavs() {
-		this.favs = 1 + favs;
+	public void setFavs(int fav) {
+		this.favs = fav + favs;
 	}
 
 	public int getRetweets() {
 		return retweets;
 	}
 
-	public void setRetweets() {
-		this.retweets = 1 + retweets;
+	public void setRetweets(int ret) {
+		this.retweets = ret + retweets;
 	}
 
 }

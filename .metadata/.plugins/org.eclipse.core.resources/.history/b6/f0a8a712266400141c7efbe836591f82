@@ -1,0 +1,205 @@
+package Servidor;
+
+import java.io.Serializable;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class UserImpl extends UnicastRemoteObject implements User, Serializable {
+
+	private String password;
+	private String userName;
+	private ArrayList<String> followers;
+	private ArrayList<String> following;
+	private ArrayList<Tweet> timeLine;
+	private ArrayList<Tweet> misTweets;
+	private ArrayList<DirectMessage> mailbox;
+	private Profile perfil;
+
+	public UserImpl(String userName, String password) throws RemoteException {
+		this.password = password;
+		this.userName = userName;
+		followers = new ArrayList<String>();
+		following = new ArrayList<String>();
+		timeLine = new ArrayList<Tweet>();
+		mailbox = new ArrayList<DirectMessage>();
+		perfil = new ProfileImpl();
+		misTweets= new ArrayList<Tweet>();
+	}
+
+	public String getUserName() throws RemoteException {
+		return this.userName;
+	}
+
+	//@Override
+	/*public boolean setUser(String name) throws RemoteException {
+		if (Servidor.misFuncionesImpl.searchUser(name) == null) {
+			Servidor.misFuncionesImpl.deleteUser(userName);
+			this.userName = name;
+			Servidor.misFuncionesImpl.addUser(this.userName, this);
+			return true;
+		} else {
+			System.out.println("Nombre de usuario actualmente en uso.");
+			return false;
+		}
+	}*/
+
+	@Override
+	public boolean setPassword(String oldPassword, String newPassword1,
+			String newPassword2) throws RemoteException {
+		if (!newPassword1.equals(newPassword2)) {
+			System.out.println("Las contraseñas no coinciden.");
+			return false;
+		} else {
+			this.password = newPassword1;
+			return true;
+		}
+
+	}
+
+	@Override
+	public void tweet(String tweet) throws RemoteException {
+		Tweet tweetReal = new Tweet(this.userName, tweet);
+		misTweets.add(tweetReal);
+		timeLine.add(tweetReal);
+		Servidor.misFuncionesImpl.twittear(tweetReal,this.followers);
+	}
+
+	@Override
+	public void directMessage(String user, String msg) 
+			throws RemoteException, InexistentUserException {
+		if (!Servidor.misFuncionesImpl.following(user, this.userName)) {// No es mis followers sino los del destinatario
+			throw new InexistentUserException();
+		}
+		DirectMessage message = new DirectMessage(this.userName, user, msg);
+		Servidor.misFuncionesImpl.recieveMessage(message);
+	}
+
+	@Override
+	public ArrayList<String> following() throws RemoteException {
+		return this.following;
+	}
+
+	@Override
+	public ArrayList<String> followers() throws RemoteException {
+		return this.followers;
+	}
+
+	@Override
+	public void follow(String user) throws RemoteException,InexistentUserException {
+		if(Servidor.misFuncionesImpl.searchUser(user) == null){
+			throw new InexistentUserException();
+		}
+		if(following.contains(user)){
+			return;
+		}
+		this.following.add(user);
+		Servidor.misFuncionesImpl.recieveFollower(user, this.userName);
+	}
+
+	@Override
+	public String getTimeLine() throws RemoteException {// Del reves
+		String res = "";
+		Iterator<Tweet> it = timeLine.iterator();
+		int cont = 0;
+		while(it.hasNext()){
+			Tweet tweet = it.next();
+		   res += "[" + ++cont + "]" + tweet.getUser() + " twitteo: " + tweet.getTweet() +  "[Retweets: " + tweet.getRetweets() + " ] [Favs: " + tweet.getFavs() + " ]" + "\n";
+		}
+		return res;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void putMessage(DirectMessage message){
+			this.mailbox.add(message);
+	}
+	
+	public void putFollower(String user){
+		this.followers.add(user);
+		System.out.println("Followers de " + this.userName +": " + followers.toString());
+	}
+
+	@Override
+	public String getMessages() throws RemoteException {
+		String res = "Tus mensajes directos: " + "\n";
+		for (DirectMessage msg : mailbox) {
+		    res += msg.getRemitente() +"\n";
+		}
+		return res;
+	}
+	
+	public String message(int index)throws RemoteException{
+		String res = "";
+		try {
+			return mailbox.get(index).getMessage();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public void unfollow(String user) throws RemoteException,
+			InexistentUserException {
+		if(!this.following.contains(user)){
+			return;
+		}
+		this.following.remove(user);
+		Servidor.misFuncionesImpl.removeFollower(user,this.userName);
+	}
+	
+	public ArrayList<DirectMessage> getDirectMessages (){
+		return this.mailbox;
+	}
+	
+	public void putTweet(Tweet tweet){
+		this.timeLine.add(tweet);
+	}
+	
+	public void putUnfollow(String user){
+		this.followers.remove(user);
+	}
+
+	@Override
+	public void retwittear(int index) throws RemoteException {
+		Tweet tweet = timeLine.get(index);
+		tweet.setRetweets();
+		this.tweet(tweet.getTweet());
+	}
+
+	@Override
+	public void fav(int index) throws RemoteException {
+		Tweet tweet = timeLine.get(index);
+		tweet.setFavs();
+	}
+	
+	public ArrayList<Tweet> getTweets() throws RemoteException{
+		return this.timeLine;
+	}
+	
+	public Profile getProfile() throws RemoteException{
+		return this.perfil;
+	}
+
+	@Override
+	public String getMisTweets() throws RemoteException {
+		String res = "";
+		Iterator<Tweet> it = misTweets.iterator();
+		int cont = 0;
+		while(it.hasNext()){
+			Tweet tweet = it.next();
+		   res += "[" + ++cont + "]" + tweet.getUser() + " twitteo: " + tweet.getTweet() +  "[Retweets: " + tweet.getRetweets() + " ] [Favs: " + tweet.getFavs() + " ]" + "\n";
+		}
+		return res;
+	}
+
+}

@@ -1,0 +1,143 @@
+package gráfico;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
+
+public class EditarUsuario {
+
+	private JFrame frame;
+	private JTextField nombre;
+	private JTextField password1;
+	private JTextField password2;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EditarUsuario window = new EditarUsuario();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public EditarUsuario() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		nombre = new JTextField();
+		nombre.setColumns(10);
+		
+		JLabel lblNombreDeUsuario = new JLabel("Nombre de usuario:");
+		
+		password1 = new JTextField();
+		password1.setColumns(10);
+		
+		JLabel lblNuevaContrasea = new JLabel("Nueva contraseña:");
+		
+		JLabel lblRepetirContrasea = new JLabel("Repetir contraseña:");
+		
+		password2 = new JTextField();
+		password2.setColumns(10);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		
+		JButton button = new JButton("Guardar");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					Cliente.Cliente.cliente.user.setUser(nombre.getText());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(42)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNombreDeUsuario)
+							.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+							.addComponent(nombre, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+							.addGap(67))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblRepetirContrasea)
+								.addComponent(lblNuevaContrasea))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(password1, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+								.addComponent(password2, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+							.addGap(61))))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(178)
+					.addComponent(button, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(178, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(178)
+					.addComponent(btnGuardar)
+					.addContainerGap(178, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(nombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNombreDeUsuario))
+					.addGap(31)
+					.addComponent(button)
+					.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNuevaContrasea)
+								.addComponent(password1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(32)
+							.addComponent(lblRepetirContrasea))
+						.addComponent(password2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(44)
+					.addComponent(btnGuardar)
+					.addContainerGap())
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+
+}

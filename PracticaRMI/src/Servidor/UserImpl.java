@@ -29,7 +29,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 		following = new ArrayList<String>();
 		timeLine = new ArrayList<Tweet>();
 		mailbox = new ArrayList<DirectMessage>();
-		perfil = new ProfileImpl();
+		perfil = new ProfileImpl(this.userName);
 		misTweets= new ArrayList<Tweet>();
 	}
 
@@ -39,7 +39,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 
 	@Override
 	public boolean setUser(String name) throws RemoteException {
-		if (!Servidor.misFuncionesImpl.searchUser(name)) {
+		if (Servidor.misFuncionesImpl.searchUser(name) == null) {
 			Servidor.misFuncionesImpl.deleteUser(userName);
 			this.userName = name;
 			Servidor.misFuncionesImpl.addUser(this.userName, this);
@@ -64,8 +64,10 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 
 	@Override
-	public void tweet(String tweet) throws RemoteException {
+	public void tweet(String tweet,int ret,int favs) throws RemoteException {
 		Tweet tweetReal = new Tweet(this.userName, tweet);
+		tweetReal.setRetweets(ret);
+		tweetReal.setFavs(favs);
 		misTweets.add(tweetReal);
 		timeLine.add(tweetReal);
 		Servidor.misFuncionesImpl.twittear(tweetReal,this.followers);
@@ -93,7 +95,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 
 	@Override
 	public void follow(String user) throws RemoteException,InexistentUserException {
-		if(!Servidor.misFuncionesImpl.searchUser(user)){
+		if(Servidor.misFuncionesImpl.searchUser(user) == null){
 			throw new InexistentUserException();
 		}
 		if(following.contains(user)){
@@ -110,7 +112,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 		int cont = 0;
 		while(it.hasNext()){
 			Tweet tweet = it.next();
-		   res += "[" + ++cont + "]" + tweet.getUser() + " twitteo: " + tweet.getTweet() +  "[Retweets: " + tweet.getRetweets() + " ] [Favs: " + tweet.getFavs() + " ]" + "\n";
+		   res += "[" + ++cont + "]" + tweet.getAutor() + " twitteo: " + tweet.getContent() +  "[Retweets: " + tweet.getRetweets() + " ] [Favs: " + tweet.getFavs() + " ]" + "\n";
 		}
 		return res;
 	}
@@ -132,7 +134,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	public String getMessages() throws RemoteException {
 		String res = "Tus mensajes directos: " + "\n";
 		for (DirectMessage msg : mailbox) {
-		    res += msg.getRemitente() +"\n";
+		    res += msg.getAutor() +"\n";
 		}
 		return res;
 	}
@@ -140,7 +142,7 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	public String message(int index)throws RemoteException{
 		String res = "";
 		try {
-			return mailbox.get(index).getMessage();
+			return mailbox.get(index).getContent();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -170,16 +172,23 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 
 	@Override
-	public void retwittear(int index) throws RemoteException {
+	public void retwittear(int index,boolean ret) throws RemoteException {
 		Tweet tweet = timeLine.get(index);
-		tweet.setRetweets();
-		this.tweet(tweet.getTweet());
+		if (ret)
+			tweet.setRetweets(1);
+		else
+			tweet.setRetweets(-1);
+		this.tweet(tweet.getContent(),tweet.getRetweets(),tweet.getFavs());
 	}
 
 	@Override
-	public void fav(int index) throws RemoteException {
+	public void fav(int index,boolean fav) throws RemoteException {
 		Tweet tweet = timeLine.get(index);
-		tweet.setFavs();
+		if(fav)
+			tweet.setFavs(1);
+		else
+			tweet.setFavs(-1);
+		this.tweet(tweet.getContent(),tweet.getRetweets(),tweet.getFavs());
 	}
 	
 	public ArrayList<Tweet> getTweets() throws RemoteException{
@@ -191,15 +200,10 @@ public class UserImpl extends UnicastRemoteObject implements User, Serializable 
 	}
 
 	@Override
-	public String getMisTweets() throws RemoteException {
-		String res = "";
-		Iterator<Tweet> it = misTweets.iterator();
-		int cont = 0;
-		while(it.hasNext()){
-			Tweet tweet = it.next();
-		   res += "[" + ++cont + "]" + tweet.getUser() + " twitteo: " + tweet.getTweet() +  "[Retweets: " + tweet.getRetweets() + " ] [Favs: " + tweet.getFavs() + " ]" + "\n";
-		}
-		return res;
+	public ArrayList<Tweet> getMisTweets() throws RemoteException {
+		return this.misTweets;
 	}
+	
+	
 
 }

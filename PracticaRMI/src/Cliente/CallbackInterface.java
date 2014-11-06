@@ -3,6 +3,8 @@ package Cliente;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import Servidor.Tweet;
+
 public interface CallbackInterface extends Remote{
 	
 	public void notifyMessage() throws RemoteException;

@@ -1,0 +1,81 @@
+package gráfico;
+
+import java.awt.EventQueue;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+
+public class Perfil {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Perfil window = new Perfil();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Perfil() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 750);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel Imagen = null;
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO
+					.read(new URL(
+							"http://thoughtlessthinker.co.uk/wp-content/uploads/2011/10/TwitterDefaultEggCracked.png"));
+			Imagen = new JLabel(new ImageIcon(myPicture.getScaledInstance(160,
+					160, BufferedImage.SCALE_SMOOTH)));
+			frame.getContentPane().add(Imagen);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(43)
+					.addComponent(Imagen, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(451, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(27)
+					.addComponent(Imagen, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(514, Short.MAX_VALUE))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

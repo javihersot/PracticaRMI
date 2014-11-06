@@ -1,0 +1,132 @@
+package gráfico;
+
+import java.awt.EventQueue;
+import java.awt.Image;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+
+public class Principal {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal window = new Principal();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Principal() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 750);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnDesconectar = new JButton("Desconectar");
+		
+		JButton btnPerfil = new JButton("Perfil");
+		
+		JButton btnTweetear = new JButton("Tweetear");
+		btnTweetear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JButton btnMensajes = new JButton("Mensajes");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		
+		BufferedImage myPicture;
+		
+		JLabel lblNewLabel=null;
+		try {
+			myPicture = ImageIO.read(new File("/home/victor/Escritorio/Paisaje.jpg"));
+			lblNewLabel = new JLabel(new ImageIcon(myPicture.getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(),BufferedImage.SCALE_SMOOTH)));
+			frame.add(lblNewLabel);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnPerfil)
+								.addComponent(btnMensajes))
+							.addPreferredGap(ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 363, GroupLayout.PREFERRED_SIZE)
+							.addGap(35))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnTweetear, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+							.addGap(134))))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addGap(29)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
+					.addComponent(btnDesconectar)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(btnDesconectar)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(255)
+							.addComponent(btnPerfil)
+							.addGap(37)
+							.addComponent(btnMensajes)
+							.addPreferredGap(ComponentPlacement.RELATED, 200, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 469, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addComponent(btnTweetear, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+					.addGap(45))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(20)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

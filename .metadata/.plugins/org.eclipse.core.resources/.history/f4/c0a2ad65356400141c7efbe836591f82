@@ -1,0 +1,250 @@
+package gráfico;
+
+import java.awt.EventQueue;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.rmi.RemoteException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Perfil {
+
+	private JFrame frame;
+	private JLabel Imagen_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Perfil window = new Perfil();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Perfil() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 750);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JLabel Imagen = null;
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO
+					.read(new URL(
+							"http://thoughtlessthinker.co.uk/wp-content/uploads/2011/10/TwitterDefaultEggCracked.png"));
+			Imagen_1 = new JLabel(new ImageIcon(myPicture.getScaledInstance(
+					160, 160, BufferedImage.SCALE_SMOOTH)));
+			frame.getContentPane().add(Imagen_1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		JLabel nombre = null;
+		try {
+			nombre = new JLabel(Cliente.Cliente.cliente.user.getProfile()
+					.getName());
+			nombre.setHorizontalAlignment(SwingConstants.CENTER);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		JLabel info = null;
+		JLabel web = null;
+		try {
+			info = new JLabel(Cliente.Cliente.cliente.user.getProfile()
+					.getInfo());
+
+			info.setHorizontalAlignment(SwingConstants.CENTER);
+
+			web = new JLabel(Cliente.Cliente.cliente.user.getProfile().getWeb());
+			web.setHorizontalAlignment(SwingConstants.CENTER);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JButton btnEditarPerfil = new JButton("Editar perfil");
+		btnEditarPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EditarPerfil.main(null);
+				frame.dispose();
+			}
+		});
+
+		JScrollPane misTweets = new JScrollPane();
+
+		JButton btnEditarCuenta = new JButton("Editar Cuenta");
+
+		JButton btnInicio = new JButton("Inicio");
+		btnInicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Principal.main(null);
+				frame.dispose();
+			}
+		});
+
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout
+				.setHorizontalGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addContainerGap(56, Short.MAX_VALUE)
+										.addGroup(
+												groupLayout
+														.createParallelGroup(
+																Alignment.TRAILING)
+														.addComponent(
+																Imagen_1,
+																GroupLayout.PREFERRED_SIZE,
+																204,
+																GroupLayout.PREFERRED_SIZE)
+														.addGroup(
+																groupLayout
+																		.createParallelGroup(
+																				Alignment.LEADING)
+																		.addGroup(
+																				groupLayout
+																						.createSequentialGroup()
+																						.addComponent(
+																								btnInicio,
+																								GroupLayout.PREFERRED_SIZE,
+																								158,
+																								GroupLayout.PREFERRED_SIZE)
+																						.addPreferredGap(
+																								ComponentPlacement.RELATED))
+																		.addGroup(
+																				Alignment.TRAILING,
+																				groupLayout
+																						.createSequentialGroup()
+																						.addGroup(
+																								groupLayout
+																										.createParallelGroup(
+																												Alignment.LEADING)
+																										.addComponent(
+																												btnEditarCuenta)
+																										.addComponent(
+																												btnEditarPerfil))
+																						.addGap(62))))
+										.addGroup(
+												groupLayout
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addGroup(
+																groupLayout
+																		.createSequentialGroup()
+																		.addGap(133)
+																		.addComponent(
+																				nombre,
+																				GroupLayout.PREFERRED_SIZE,
+																				164,
+																				GroupLayout.PREFERRED_SIZE))
+														.addGroup(
+																groupLayout
+																		.createSequentialGroup()
+																		.addGap(80)
+																		.addComponent(
+																				info,
+																				GroupLayout.PREFERRED_SIZE,
+																				276,
+																				GroupLayout.PREFERRED_SIZE))
+														.addGroup(
+																groupLayout
+																		.createSequentialGroup()
+																		.addGap(70)
+																		.addGroup(
+																				groupLayout
+																						.createParallelGroup(
+																								Alignment.LEADING)
+																						.addComponent(
+																								misTweets,
+																								GroupLayout.PREFERRED_SIZE,
+																								328,
+																								GroupLayout.PREFERRED_SIZE)
+																						.addComponent(
+																								web,
+																								GroupLayout.PREFERRED_SIZE,
+																								294,
+																								GroupLayout.PREFERRED_SIZE))))
+										.addContainerGap(40, Short.MAX_VALUE)));
+		groupLayout
+				.setVerticalGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addGap(27)
+										.addComponent(Imagen_1,
+												GroupLayout.PREFERRED_SIZE,
+												174, GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(btnEditarPerfil)
+										.addGap(27)
+										.addComponent(btnEditarCuenta)
+										.addPreferredGap(
+												ComponentPlacement.RELATED,
+												265, Short.MAX_VALUE)
+										.addComponent(btnInicio,
+												GroupLayout.PREFERRED_SIZE,
+												105, GroupLayout.PREFERRED_SIZE)
+										.addGap(49))
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addGap(36)
+										.addComponent(nombre)
+										.addPreferredGap(
+												ComponentPlacement.RELATED)
+										.addComponent(info,
+												GroupLayout.PREFERRED_SIZE, 74,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(
+												ComponentPlacement.RELATED)
+										.addComponent(web,
+												GroupLayout.PREFERRED_SIZE, 15,
+												GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(
+												ComponentPlacement.RELATED, 46,
+												Short.MAX_VALUE)
+										.addComponent(misTweets,
+												GroupLayout.PREFERRED_SIZE,
+												489, GroupLayout.PREFERRED_SIZE)
+										.addGap(28)));
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

@@ -62,6 +62,8 @@ public class Logging {
 	public Logging() {
 		initialize();
 	}
+	
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -94,7 +96,10 @@ public class Logging {
 				if (!Cliente.Cliente.cliente.connect(userName.getText(), password.getText()))
 					JOptionPane.showMessageDialog(frame, "Usuario o contraseña incorrectos.");
 				else{
-					//Nueva ventana dispose
+					Principal principal = new Principal();
+					Cliente.Cliente.cliente.pantallaPrincipal = principal;
+					Cliente.Cliente.cliente.pantallaPrincipal.main(null);
+					frame.dispose();
 				}
 			}
 		});

@@ -1,0 +1,114 @@
+package gráfico;
+
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JList;
+
+public class Usuarios {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Usuarios window = new Usuarios();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Usuarios() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JLabel label = new JLabel("");
+
+		JLabel lblNewLabel = new JLabel();
+		String[] seguidores= null;
+		try {
+			seguidores = new String[Cliente.Cliente.cliente.user
+					.followers().size()];
+			for (int i = 0; i < seguidores.length; i++) {
+				seguidores[i] = Cliente.Cliente.cliente.user.followers().get(i);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		JScrollPane scrollPane = new JScrollPane();
+
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout
+				.setHorizontalGroup(groupLayout
+						.createParallelGroup(Alignment.TRAILING)
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addGap(181)
+										.addGroup(
+												groupLayout
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(
+																lblNewLabel)
+														.addComponent(label))
+										.addContainerGap(267, Short.MAX_VALUE))
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addContainerGap(62, Short.MAX_VALUE)
+										.addComponent(scrollPane,
+												GroupLayout.PREFERRED_SIZE,
+												341, GroupLayout.PREFERRED_SIZE)
+										.addGap(45)));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(
+				Alignment.LEADING).addGroup(
+				groupLayout
+						.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(
+								groupLayout
+										.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblNewLabel)
+										.addComponent(label))
+						.addGap(27)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE,
+								194, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(38, Short.MAX_VALUE)));
+
+		JList list = new JList(seguidores);
+		scrollPane.setViewportView(list);
+
+		frame.getContentPane().setLayout(groupLayout);
+
+	}
+}

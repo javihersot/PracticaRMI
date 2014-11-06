@@ -1,0 +1,79 @@
+package gráfico;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.JPanel;
+
+public class PerfilOtros {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PerfilOtros window = new PerfilOtros();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public PerfilOtros() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel imagen = new JLabel("New label");
+		
+		JLabel userName = new JLabel("New label");
+		
+		JLabel nombre = new JLabel("New label");
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(25)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(imagen, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
+						.addComponent(userName, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+					.addGap(61)
+					.addComponent(nombre, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(41, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(nombre)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(imagen, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(userName)))
+					.addContainerGap(85, Short.MAX_VALUE))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

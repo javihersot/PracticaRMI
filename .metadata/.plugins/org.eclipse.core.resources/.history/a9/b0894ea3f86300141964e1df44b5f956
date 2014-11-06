@@ -1,0 +1,100 @@
+package Cliente;
+
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Graphics;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Window {
+	public class Imagen extends javax.swing.JPanel {
+		 
+		public Imagen() {
+		this.setSize(300, 400); //se selecciona el tamaño del panel
+		}
+		 
+		//Se crea un método cuyo parámetro debe ser un objeto Graphics
+		 
+		public void paint(Graphics grafico) {
+		Dimension height = getSize();
+		 
+		//Se selecciona la imagen que tenemos en el paquete de la //ruta del programa
+		 
+		ImageIcon Img = new ImageIcon(getClass().getResource("/Images/Diagrama.png"));
+		 
+		//se dibuja la imagen que tenemos en el paquete Images //dentro de un panel
+		 
+		grafico.drawImage(Img.getImage(), 0, 0, height.width, height.height, null);
+		 
+		setOpaque(false);
+		super.paintComponent(grafico);
+		}
+		}
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Window window = new Window();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Window() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Imagen Imagen = new Imagen();
+				jPanel1.add(Imagen);
+				jPanel1.repaint();
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(164)
+					.addComponent(btnAgregar)
+					.addContainerGap(167, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(125, Short.MAX_VALUE)
+					.addComponent(btnAgregar)
+					.addGap(121))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}

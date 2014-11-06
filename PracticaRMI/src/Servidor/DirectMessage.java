@@ -24,7 +24,7 @@ public class DirectMessage extends UnicastRemoteObject implements MessageInt, Se
 		this.message=message;
 	}
 
-	public String getRemitente() throws RemoteException{
+	public String getAutor() throws RemoteException{
 		return remitente;
 	}
 
@@ -32,13 +32,23 @@ public class DirectMessage extends UnicastRemoteObject implements MessageInt, Se
 		return destinatario;
 	}
 
-	public String getMessage() throws RemoteException{ 
+	public String getContent() throws RemoteException{ 
 		this.leido = true;
 		return message;
 	}
 	
 	public boolean leido()throws RemoteException{
 		return this.leido;
+	}
+
+	@Override
+	public int getRetweets() throws RemoteException {
+		return 0;
+	}
+
+	@Override
+	public int getFavs() throws RemoteException {
+		return 0;
 	}
 
 }
