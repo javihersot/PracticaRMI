@@ -8,9 +8,7 @@ import java.rmi.registry.*;
 import java.util.ArrayList;
 
 import Servidor.DirectMessage;
-import Servidor.FailLoggingException;
 import Servidor.Funciones;
-import Servidor.InexistentUserException;
 import Servidor.MessageInt;
 import Servidor.Profile;
 import Servidor.Tweet;
@@ -19,14 +17,17 @@ import Servidor.UserImpl;
 
 public class Cliente {
 
-	public static Registry registroServ;
-	public static Funciones funciones;
-	public User user;
-	public static Cliente cliente;
-	public User usuarioAbierto;
-	public Principal pantallaPrincipal;
-	public MessageInt tweetAbierto;
+	public static Registry registroServ;				//Registro del servidor
+	public static Funciones funciones;					//Objeto de la clase Funciones para conectarse, desconectarse...
+	public User user;									//Implementacion del usuario
+	public static Cliente cliente;						
+	public User usuarioAbierto;							//Perfil del usuario que se quiera ver
+	public Principal pantallaPrincipal;					//Objeto para poder hacer saltar ventanas con las notificaciones del callback
+	public MessageInt tweetAbierto;						//Objeto que contiene la referencia al tweet que se tenga abierto
 
+	/*
+	 * Constructor para inicializar los atributos tales como el registro del servidor, coger el objeto funciones de dicho registro...
+	 */
 	public Cliente() {
 		try {
 			registroServ = LocateRegistry.getRegistry();
@@ -43,6 +44,9 @@ public class Cliente {
 		this.tweetAbierto = null;
 	}
 
+	/*
+	 * Método auxiliar para poder saber si se puede conectar un usuario, y en caso contrario poderlo notificar.
+	 */
 	public boolean connect(String userName, String password) {
 		boolean res = false;
 		try {
@@ -64,51 +68,33 @@ public class Cliente {
 		return res;
 	}
 
+	/*
+	 * Método auxiliar para poder acceder al perfil de otros usuarios.
+	 */
 	public void verUser(String userName) {
 		try {
 			funciones.verUser(userName);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
+		
+		/*
+		 Cambios a realizar para ejecutar en dos máquinas:
+		 	Cambiar la IP de codebase tanto en Cliente como en Servidor, en los ficheros policy de Servidor y Cliente
+		 	Seleccionar en el cliente la ruta con la foto por defecto
+		
+		System.setProperty("java.security.policy","file:///home/victor/Escritorio/FI.upm/Quinto Semenstre/Middleware/Práctica/PracticaRMI/src/Cliente/practica.policy");
+		System.setProperty("java.rmi.server.codebase", "http://192.168.2.105/practica.jar");
+		System.setProperty("java.rmi.server.useCodebaseOnly","false");
+		if (System.getSecurityManager() == null)
+			   System.setSecurityManager(new RMISecurityManager());*/
+		
 
 		cliente = new Cliente();
 		Logging.main(args);
-		/*
-		 * try { registroServ = LocateRegistry.getRegistry(); funciones =
-		 * (Funciones) registroServ.lookup("Funciones");
-		 * funciones.register("ramvito", "123456789", "123456789"); User
-		 * usuarioRamvito = null; funciones.register("isidoro", "123456789",
-		 * "123456789"); User usuarioIsidoro = null; CallbackInterface
-		 * callbackRamvito = new Callback();
-		 * 
-		 * if (funciones.connect("ramvito", "123456789", callbackRamvito)) {
-		 * usuarioRamvito = (User) registroServ.lookup("ramvito"); }
-		 * 
-		 * if (funciones.connect("isidoro", "123456789", new Callback())) {
-		 * usuarioIsidoro = (User) registroServ.lookup("isidoro"); }
-		 * usuarioRamvito.follow("isidoro"); funciones.disconnect("ramvito");
-		 * System.out.println(usuarioIsidoro.followers().toString());
-		 * usuarioIsidoro.tweet(
-		 * "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-		 * ); if (funciones.connect("ramvito", "123456789", callbackRamvito)) {
-		 * usuarioRamvito = (User) registroServ.lookup("ramvito"); }
-		 * System.out.println(usuarioRamvito.getTimeLine());
-		 * usuarioRamvito.retwittear(0); usuarioRamvito.fav(0);
-		 * System.out.println(usuarioRamvito.getTimeLine());
-		 * usuarioIsidoro.directMessage("ramvito", "Prueba");
-		 * System.out.println(usuarioRamvito.getMessages());
-		 * System.out.println(usuarioRamvito.message(0));
-		 * usuarioRamvito.getProfile().setName("Víctor Rampérez");
-		 * System.out.println(usuarioRamvito.getProfile().getName()); } catch
-		 * (RemoteException e) { e.printStackTrace(); } catch (NotBoundException
-		 * e) { e.printStackTrace(); //} catch (FailLoggingException e) { //
-		 * e.printStackTrace(); //} catch (InexistentUserException e) { //
-		 * e.printStackTrace(); }
-		 */
 	}
 
 }

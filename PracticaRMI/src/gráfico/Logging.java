@@ -18,7 +18,6 @@ import java.awt.Color;
 import javax.swing.UIManager;
 
 import Cliente.Callback;
-import Servidor.FailLoggingException;
 import Servidor.Funciones;
 
 import java.awt.event.MouseAdapter;
@@ -106,6 +105,8 @@ public class Logging {
 		btnConectar.setFont(new Font("Dialog", Font.BOLD, 16));
 		
 		password = new JPasswordField();
+		
+		JLabel lblConectarse = new JLabel("Login");
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -118,19 +119,24 @@ public class Logging {
 								.addComponent(lblContrasea))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(password)
+								.addComponent(password, 168, 168, 168)
 								.addComponent(userName, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(159)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(btnRegistrar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnConectar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+								.addComponent(btnConectar, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(205)
+							.addComponent(lblConectarse)))
 					.addContainerGap(82, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(76)
+					.addContainerGap()
+					.addComponent(lblConectarse)
+					.addGap(49)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNombreDeUsuario, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 						.addComponent(userName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -142,7 +148,7 @@ public class Logging {
 					.addComponent(btnConectar)
 					.addGap(18)
 					.addComponent(btnRegistrar, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(32, Short.MAX_VALUE))
+					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

@@ -1,0 +1,15 @@
+El proyecto ha sido desarroyado en Eclipse y por tanto creemos conveniente imporatar el proyecto y ejecutarlo en dicha plataforma, para asegurar el correcto funcionamiento de la interfaz gráfica.
+
+Se puede ejecutar en local simplemente arrancando Servidor y posteriormente Cliente.
+
+
+Para ejecutar en varias máquinas:
+
+	* Arrancar un servidor (por ejemplo apache) y depositar las clases que no tiene el cliente (User, UserImpl, Profile, ProfileImpl...)
+		e indicarlo en las propiedades (server.codebase).
+	* Indicar la ip del servidor en las propiedades del servidor (hostname, codebase, policy...)
+	* Poner la ubicación a una foto de la máquina en la que se ejecute el cliente en el constructor de Profile.
+	* Se proporcionan los ficheros de políticas correspondientes teniendo solo que indicar la ubicación de codebase (servidor).
+
+
+Para cualquier duda contactar mediante correo: v.ramperez@gmail.com

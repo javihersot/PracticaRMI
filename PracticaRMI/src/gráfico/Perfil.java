@@ -98,7 +98,6 @@ public class Perfil {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					CambiarFoto.main(null);
-					frame.dispose();
 				}
 			});
 			frame.getContentPane().add(Imagen_1);

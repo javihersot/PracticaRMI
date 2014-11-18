@@ -1,0 +1,9 @@
+grant Codebase "http://192.168.2.105/practica.jar"  {
+    permission java.security.AllPermission;
+};
+
+grant {
+	permission java.net.SocketPermission 
+               "*:1024-65535", 
+               "connect,accept,resolve";
+};

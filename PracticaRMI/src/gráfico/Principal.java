@@ -119,17 +119,15 @@ public class Principal {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 700, 750);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JButton btnDesconectar = new JButton("Desc");
 		btnDesconectar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int dialogButton = JOptionPane.YES_NO_OPTION;
-				JOptionPane.showConfirmDialog(null,
-						"¿Está seguro de que desea salir?", "Desconexión",
-						dialogButton);
-
+				int dialogButton =  JOptionPane.showConfirmDialog(null,
+						"¿Está seguro de que desea salir?", "Desconexión",JOptionPane.YES_NO_OPTION);
+				
 				if (dialogButton == JOptionPane.YES_OPTION) {
 					try {
 						Cliente.cliente.funciones
@@ -139,11 +137,12 @@ public class Principal {
 						e1.printStackTrace();
 					}
 					Logging.main(null);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.dispose();
-				} else if (dialogButton == JOptionPane.YES_OPTION) {
+				} else {
 					return;
 				}
-
+				System.out.println(dialogButton);
 			}
 		});
 

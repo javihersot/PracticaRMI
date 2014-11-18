@@ -20,8 +20,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-import Servidor.InexistentUserException;
-
 import Cliente.Cliente;
 
 import java.awt.event.MouseAdapter;
@@ -116,18 +114,14 @@ public class PerfilOtros {
 						Cliente.cliente.user.unfollow(Cliente.cliente.usuarioAbierto.getUserName());
 					} catch (RemoteException e1) {
 						e1.printStackTrace();
-					} catch (InexistentUserException e1) {
-						e1.printStackTrace();
-					}
+					} 
 				}else{
 					System.out.println("OK");
 					try {
 						Cliente.cliente.user.follow(Cliente.cliente.usuarioAbierto.getUserName());
 					} catch (RemoteException e1) {
 						e1.printStackTrace();
-					} catch (InexistentUserException e1) {
-						e1.printStackTrace();
-					}
+					} 
 				}
 					
 			}
